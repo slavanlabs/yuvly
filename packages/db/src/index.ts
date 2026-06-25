@@ -1,5 +1,6 @@
 import { drizzle, type DrizzleD1Database } from "drizzle-orm/d1";
 import * as schema from "./db/schema.js";
+import { eq, and } from "drizzle-orm";
 
 export type D1Database = Parameters<typeof drizzle>[0];
 export const getDB = (d1: D1Database) => {
@@ -8,3 +9,5 @@ export const getDB = (d1: D1Database) => {
 
 export * from "./db/schema.js"
 export type Schema = typeof schema;
+
+export { eq, and }

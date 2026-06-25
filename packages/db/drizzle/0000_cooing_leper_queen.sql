@@ -34,14 +34,13 @@ CREATE TABLE `user` (
 	`email` text NOT NULL,
 	`email_verified` integer NOT NULL,
 	`image` text,
-	`phone_number` text,
-	`phone_number_verified` integer,
+	`phone` text,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);--> statement-breakpoint
-CREATE UNIQUE INDEX `user_phone_number_unique` ON `user` (`phone_number`);--> statement-breakpoint
+CREATE UNIQUE INDEX `user_phone_unique` ON `user` (`phone`);--> statement-breakpoint
 CREATE TABLE `verification` (
 	`id` text PRIMARY KEY NOT NULL,
 	`identifier` text NOT NULL,

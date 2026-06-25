@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "63a26fcc-95a4-4393-9804-22086926e6c2",
+  "id": "0003a231-1bf6-4c3e-a8da-2315ab6c5f2d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "account": {
@@ -245,16 +245,9 @@
           "notNull": false,
           "autoincrement": false
         },
-        "phone_number": {
-          "name": "phone_number",
+        "phone": {
+          "name": "phone",
           "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "phone_number_verified": {
-          "name": "phone_number_verified",
-          "type": "integer",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -282,10 +275,10 @@
           ],
           "isUnique": true
         },
-        "user_phone_number_unique": {
-          "name": "user_phone_number_unique",
+        "user_phone_unique": {
+          "name": "user_phone_unique",
           "columns": [
-            "phone_number"
+            "phone"
           ],
           "isUnique": true
         }

@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "hono": "^4.12.27",
-    "@workspace/better-auth": "workspace:*"
+    "@workspace/better-auth": "workspace:*",
+    "@workspace/db": "workspace:*"
   },
   "devDependencies": {
     "wrangler": "^4.4.0",

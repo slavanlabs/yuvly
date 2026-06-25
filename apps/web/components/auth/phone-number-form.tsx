@@ -8,11 +8,14 @@ import { Input } from "@workspace/ui/components/input"
 import { YuvlyMascot } from "@/components/yuvly-mascot"
 import { Button } from "@workspace/ui/components/button"
 import examples from "libphonenumber-js/mobile/examples"
+
 import parsePhoneNumberFromString, {
   AsYouType,
   CountryCode,
   getExampleNumber,
 } from "libphonenumber-js"
+import { authClient } from "@/lib/better-auth/auth-client"
+import { useRouter } from "next/navigation"
 
 const getPlaceholder = (countryCode: string): string => {
   try {
@@ -26,6 +29,9 @@ const getPlaceholder = (countryCode: string): string => {
 export function PhoneNumberForm() {
   const [phonenumber, setPhonenumber] = useState<string>("")
   const [selected, setSelected] = useState<string>("IN")
+
+  const { data } = authClient.useSession()
+  const router = useRouter();
 
   const isValid =
     parsePhoneNumberFromString(
@@ -45,13 +51,27 @@ export function PhoneNumberForm() {
     setPhonenumber(formatted)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const phone = parsePhoneNumberFromString(
       phonenumber,
       selected as CountryCode
     )
     const e164 = phone?.number
-    console.log(e164)
+    
+    const response = await fetch("http://localhost:8787/api/v1/user/phonenumber", {
+      method: "PATCH",
+      body: JSON.stringify({
+        phonenumber
+      }),
+      credentials: "include"
+    });
+  
+    if(!response.ok) {
+      alert("error")
+      return
+    }
+    const data = await response.json();
+    alert(data.message)
   }
 
   return (
@@ -104,6 +124,16 @@ export function PhoneNumberForm() {
         >
           Continue with phone
         </Button>
+
+        <p className="mt-10 text-center font-mono text-[14px] tracking-tighter text-muted-foreground">
+          Signed in as {data?.user.email}.
+          <span onClick={() => {
+            authClient.signOut()
+            router.push("/login")
+          }} className="ml-2 cursor-pointer font-semibold hover:underline">
+            Log out
+          </span>
+        </p>
       </div>
     </div>
   )

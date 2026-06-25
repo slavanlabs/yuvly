@@ -7,8 +7,7 @@ export const user = sqliteTable("user", {
 	email: t.text("email").notNull().unique(),
 	emailVerified: t.integer("email_verified").notNull(),
 	image: t.text("image"),
-    phoneNumber: t.text("phone_number").unique(),
-	phoneNumberVerified: t.integer("phone_number_verified"),
+    phone: t.text("phone").unique(),
 	createdAt: t.integer("created_at", { mode: "timestamp_ms" }).notNull(),
 	updatedAt: t.integer("updated_at", { mode: "timestamp_ms" }).notNull(),
 });

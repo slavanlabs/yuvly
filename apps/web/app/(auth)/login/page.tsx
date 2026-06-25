@@ -1,5 +1,4 @@
-import { Login } from "@/components/auth/email-login";
-import { PhoneNumberForm } from "@/components/auth/phone-number-form";
+import { Login } from "@/components/auth/login";
 
 export default function LoginPage() {
     return <Login />

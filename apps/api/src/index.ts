@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors';
 import { Bindings } from "@workspace/types"
 import auth from "./routes/auth";
+import user from "./routes/user";
 
 const app = new Hono<{ Bindings: Bindings }>({ strict: false });
 
@@ -16,12 +17,13 @@ app.use(
   }),
 );
 
-app.get('/', (c) => {
+app.get('/api/v1', (c) => {
   return c.text("Healthy")
 });
 
 const api = app.basePath("/api/v1");
 api.route("/auth", auth)
+api.route("/user", user);
 
 export default {
   fetch: app.fetch

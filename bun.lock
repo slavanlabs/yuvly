@@ -17,6 +17,7 @@
       "name": "api",
       "dependencies": {
         "@workspace/better-auth": "workspace:*",
+        "@workspace/db": "workspace:*",
         "hono": "^4.12.27",
       },
       "devDependencies": {
