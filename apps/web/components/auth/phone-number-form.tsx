@@ -8,7 +8,11 @@ import { Input } from "@workspace/ui/components/input"
 import { YuvlyMascot } from "@/components/yuvly-mascot"
 import { Button } from "@workspace/ui/components/button"
 import examples from "libphonenumber-js/mobile/examples"
-import parsePhoneNumberFromString, { AsYouType, CountryCode, getExampleNumber, isValidNumber } from "libphonenumber-js"
+import parsePhoneNumberFromString, {
+  AsYouType,
+  CountryCode,
+  getExampleNumber,
+} from "libphonenumber-js"
 
 const getPlaceholder = (countryCode: string): string => {
   try {
@@ -23,7 +27,11 @@ export function PhoneNumberForm() {
   const [phonenumber, setPhonenumber] = useState<string>("")
   const [selected, setSelected] = useState<string>("IN")
 
-  const isValid = parsePhoneNumberFromString(phonenumber, selected as CountryCode)?.isValid() ?? false
+  const isValid =
+    parsePhoneNumberFromString(
+      phonenumber,
+      selected as CountryCode
+    )?.isValid() ?? false
 
   const handlePhonenumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value
@@ -38,8 +46,12 @@ export function PhoneNumberForm() {
   }
 
   const handleSubmit = () => {
-    
-
+    const phone = parsePhoneNumberFromString(
+      phonenumber,
+      selected as CountryCode
+    )
+    const e164 = phone?.number
+    console.log(e164)
   }
 
   return (

@@ -5,7 +5,8 @@
   "private": true,
   "devDependencies": {
     "@types/bun": "latest",
-    "@workspace/typescript-config": "workspace:*"
+    "@workspace/typescript-config": "workspace:*",
+    "@workspace/types": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -14,5 +15,9 @@
     "@better-auth/drizzle-adapter": "^1.6.20",
     "better-auth": "^1.6.20",
     "@workspace/db": "workspace:*"
+  },
+  "exports": {
+    "./server": "./src/better-auth.ts",
+    "./client": "./src/better-auth-client.ts"
   }
 }
