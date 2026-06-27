@@ -4,6 +4,7 @@ import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils";
 import { Metadata } from "next";
+import { Toaster } from "@workspace/ui/components/sonner";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'})
 
@@ -33,6 +34,7 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
     >
       <body>
+        <Toaster />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
