@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils";
 import { Metadata } from "next";
 import { Toaster } from "@workspace/ui/components/sonner";
+import { Analytics } from "@vercel/analytics/next"
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'})
 
@@ -35,6 +36,7 @@ export default function RootLayout({
     >
       <body>
         <Toaster />
+        <Analytics />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
