@@ -10,20 +10,25 @@ import { Button } from "@workspace/ui/components/button"
 import { Label } from "@workspace/ui/components/label"
 import { Input } from "@workspace/ui/components/input"
 import { YuvlyMascot } from "@/components/yuvly-mascot"
+import { useTheme } from "next-themes"
 
 export function Auth() {
   const [active, setActive] = useState<"signin" | "signup">("signin")
+  const { theme } = useTheme()
   return (
     <div
-      className={cn("flex h-screen w-screen items-center gap-2 select-none ")}
+      className={cn("flex h-screen w-screen items-center gap-2 select-none")}
     >
       <div className="h-[99%] flex-1 p-2">
         <div className="relative h-full">
           <Image
-            src={"/yuvly.jpg"}
+            src={theme === "light" ? "/waitlist-image.jpg" : "/yuvly.jpg"}
             alt=""
             fill
-            className="rounded-lg object-cover"
+            className={cn(
+              "rounded-lg object-cover",
+              theme === "light" && "object-left"
+            )}
           />
         </div>
       </div>
@@ -50,7 +55,7 @@ export function Auth() {
               variant="ghost"
               onClick={() => setActive("signin")}
               className={cn(
-                "relative z-10 cursor-pointer rounded-full px-6 py-3 hover:bg-transparent! focus:ring-0! border-none",
+                "relative z-10 cursor-pointer rounded-full border-none px-6 py-3 hover:bg-transparent! focus:ring-0!",
                 active === "signin"
                   ? "text-black dark:text-white"
                   : "text-gray-400 dark:text-neutral-500"
@@ -64,7 +69,7 @@ export function Auth() {
               variant="ghost"
               onClick={() => setActive("signup")}
               className={cn(
-                "relative z-10 cursor-pointer rounded-full px-6 py-3 hover:bg-transparent! focus:ring-0! border-none",
+                "relative z-10 cursor-pointer rounded-full border-none px-6 py-3 hover:bg-transparent! focus:ring-0!",
                 active === "signup"
                   ? "text-black dark:text-white"
                   : "text-gray-400 dark:text-neutral-500"
@@ -121,6 +126,11 @@ export function Auth() {
             Sign {active === "signin" ? "in" : "up"} with Google
           </Button>
         </div>
+        <p className="mt-4 text-xs text-muted-foreground">
+          By continuing you agree to our{" "}
+          <span className="font-medium underline">Privacy Policy</span> and{" "}
+          <span className="font-medium underline">Terms of Service</span>
+        </p>
       </div>
     </div>
   )
