@@ -25,6 +25,7 @@ export function Auth() {
             src={theme === "light" ? "/waitlist-image.jpg" : "/yuvly.jpg"}
             alt=""
             fill
+            loading="eager"
             className={cn(
               "rounded-lg object-cover",
               theme === "light" && "object-left"
