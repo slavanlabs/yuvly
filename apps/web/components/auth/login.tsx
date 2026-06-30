@@ -19,7 +19,7 @@ export function Auth() {
     <div
       className={cn("flex h-screen w-screen items-center gap-2 select-none")}
     >
-      <div className="h-[99%] flex-1 p-2">
+      <div className="h-[99%] flex-1 px-4 py-4">
         <div className="relative h-full">
           <Image
             src={theme === "light" ? "/waitlist-image.jpg" : "/yuvly.jpg"}
